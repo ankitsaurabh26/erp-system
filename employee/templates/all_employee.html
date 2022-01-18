@@ -1,0 +1,86 @@
+{%extends 'admin_base.html'%}
+{% block main %}
+
+
+<div class="card shadow m-2">
+    <div class="card-body">
+        <h5 class style = "border-bottom:1px solid rgb(184, 13, 13)">
+            Employee Details
+        </h5>
+        <div class="container-fluid">
+            <table class="table table-bordered table-hover" id="example">
+                <thead class="text-light bg-danger">
+                    <tr>
+                        <th>
+                            Serial no.
+                        </th>
+                        <th>
+                            Employee Code
+                        </th>
+                        <th>
+                            First Name
+                        </th>
+                        <th>
+                            Last Name
+                        </th>
+                        <th>
+                            Email-ID
+                        </th>
+                        <th>
+                            Contact no.
+                        </th>
+                        <th>
+                            Joining Date
+                        </th>
+                        <th>
+                            Action
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {%for i in employee%}
+                     <tr>
+                         <td>
+                             {{forloop.counter}}
+                         </td>
+                         <td>
+                             {{i.empcode}}
+                         </td>
+                         <td>
+                             {{i.user.first_name}}
+                         </td>  
+                         <td>   
+                             {{i.user.last_name}}
+                         </td>
+                         <td>    
+                             {{i.user.username}}
+                         </td> 
+                         <td>    
+                             {{i.contact}}
+                         </td>
+                         <td>    
+                             {{i.joiningdate}}
+                         </td>
+                         <td>
+                            <a href="{% url 'edit_profile' i.id %}" class="text-primary">Edit Profile</a>    
+                             <a href="{% url 'delete_employee' i.user.id %}" class="text-danger" onclick="return confirm('Are you sure?')">Delete</a>
+                         </td>
+                     </tr>
+
+                    {%endfor%}
+                </tbody>
+            </table>
+            
+            
+
+
+
+
+
+
+        </div>
+    </div>
+</div>
+
+{%endblock%}
